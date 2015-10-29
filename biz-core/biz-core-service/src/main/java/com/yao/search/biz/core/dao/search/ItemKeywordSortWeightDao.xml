@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yao.search.biz.core.dao.search.ItemKeywordSortWeightDao">
+
+	<resultMap id="ItemKeywordSortWeightMap" type="com.yao.search.biz.core.model.po.ItemKeywordSortWeight">
+		<result column="id" property="id" />
+		<result column="itemId" property="itemId" />
+		<result column="keyword" property="keyword" />
+		<result column="weight" property="weight" />
+        <result column="type" property="type" />
+        <result column="startTime" property="startTime" />
+        <result column="endTime" property="endTime" />
+        <result column="status" property="status" />
+	</resultMap>
+
+	<insert id="insertSortWeight" parameterType="com.yao.search.biz.core.model.po.ItemKeywordSortWeight">
+        insert into item_keyword_sort_weight
+        (itemId, keyword, weight, type, startTime, endTime, status)
+        values (#{itemId},#{keyword},#{weight},#{type},
+        #{startTime},#{endTime},#{status})
+    </insert>
+
+	<select id="querySortWeight" parameterType="com.yao.search.biz.core.model.po.ItemKeywordSortWeight"
+		resultMap="ItemKeywordSortWeightMap">
+		select iksw.id, iksw.itemId, iksw.keyword, iksw.weight, iksw.type, iksw.startTime, iksw.endTime, iksw.status
+		from item_keyword_sort_weight iksw
+		where iksw.status = #{status}
+        <if test="itemId != null">
+            and iksw.itemId = #{itemId}
+        </if>
+        <if test="keyword != null">
+            and iksw.keyword = #{keyword}
+        </if>
+        <if test="weight != null">
+            and iksw.weight = #{weight}
+        </if>
+        <if test="type != null">
+            and iksw.type = #{type}
+        </if>
+        <if test="startTime != null">
+            and iksw.startTime = #{startTime}
+        </if>
+        <if test="endTime != null">
+            and iksw.endTime = #{endTime}
+        </if>
+	</select>
+
+</mapper>

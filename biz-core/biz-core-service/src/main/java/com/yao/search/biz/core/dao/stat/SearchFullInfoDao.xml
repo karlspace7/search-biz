@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yao.search.biz.core.dao.stat.SearchFullInfoDao">
+
+	<resultMap id="OriginalSuggestWordMap" type="com.yao.search.biz.core.model.po.OriginalSuggestWord">
+		<result column="word" property="word" />
+		<result column="hot" property="hot" />
+		<result column="score" property="score" />
+		<result column="count" property="count" />
+        <result column="resultCount" property="resultCount" />
+	</resultMap>
+
+	<select id="queryOriginalSuggestWord" parameterType="com.yao.search.biz.core.model.po.OriginalSuggestWordArgs"
+		resultMap="OriginalSuggestWordMap">
+        select * from ( select 	info.word,floor(avg(info.pv)) hot,	sum(info.dpv) / sum(info.pv) * 100 score,
+        max(info.resultCount) count, 'user',resultCount	from search_full_info info
+        where info.resultCount > 0
+        <if test="startTime != null and endTime != null">
+            <![CDATA[
+            and (info.`day` > '#{startTime}' and info.`day` < '#{endTime}')
+            ]]>
+        </if>
+        <if test="startTime != null and endTime == null">
+            <![CDATA[
+            and info.`day` > '#{startTime}'
+            ]]>
+        </if>
+        <if test="startTime == null and endTime != null">
+            <![CDATA[
+            and info.`day` < '#{endTime}'
+            ]]>
+        </if>
+        and info.src = 'offical'
+        group by info.word
+        order by avg(info.pv) desc
+        ) t
+        <if test="limti != null and limti > 0">
+            limit 0, #{limti}
+        </if>
+	</select>
+
+</mapper>

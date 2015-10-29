@@ -1,0 +1,12 @@
+## 商品对应关键词的排序权重
+
+CREATE TABLE `item_keyword_sort_weight` (
+    `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `itemId` int(11) NOT NULL COMMENT 'btoc_item.id',
+    `keyword` varchar(255) NOT NULL COMMENT '关键字',
+    `weight` double(6,2) NOT NULL COMMENT '权重',
+    `type` int(2) DEFAULT 0 COMMENT '关键字类型：人工（0）、机器（1）',
+    `startTime` timestamp NOT NULL COMMENT '开始时间',
+    `endTime` timestamp NOT NULL COMMENT '结束时间',
+  	`status` int(2) DEFAULT 0 COMMENT '新建（0）、启用（1）、暂停（2）、删除（3）'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT '商品对于关键词的排序权重加分'
