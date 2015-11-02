@@ -76,6 +76,7 @@
         <commons_dbcp_version>1.4</commons_dbcp_version>
         <commons_pool_version>1.6</commons_pool_version>
         <c3p0_version>0.9.1.2</c3p0_version>
+        <druid_version>0.2.9</druid_version>
 
         <!-- orm -->
         <ibatis_version>2.3.4.726</ibatis_version>
@@ -543,6 +544,11 @@
                 <groupId>c3p0</groupId>
                 <artifactId>c3p0</artifactId>
                 <version>${c3p0_version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid_version}</version>
             </dependency>
 
             <!-- orm -->

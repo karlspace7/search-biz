@@ -12,7 +12,8 @@
        default-autowire="byName" >
 
     <bean id="b2cDataSource"
-          class="org.apache.commons.dbcp.BasicDataSource"
+          class="com.alibaba.druid.pool.DruidDataSource"
+          init-method="init"
           destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://${db.btoc}:3306/b2c?useUnicode=true&amp;characterEncoding=gbk&amp;autoReconnect=true&amp;noAccessToProcedureBodies=true&amp;zeroDateTimeBehavior=convertToNull"/>
@@ -44,7 +45,8 @@
     </bean>
 
     <bean id="statDataSource"
-          class="org.apache.commons.dbcp.BasicDataSource"
+          class="com.alibaba.druid.pool.DruidDataSource"
+          init-method="init"
           destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://${db.stat}:3306/stat?useUnicode=true&amp;characterEncoding=gbk&amp;autoReconnect=true&amp;noAccessToProcedureBodies=true&amp;zeroDateTimeBehavior=convertToNull"/>
@@ -76,7 +78,8 @@
     </bean>
 
     <bean id="searchDataSource"
-          class="org.apache.commons.dbcp.BasicDataSource"
+          class="com.alibaba.druid.pool.DruidDataSource"
+          init-method="init"
           destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://${db.stat}/search?useUnicode=true&amp;characterEncoding=gbk&amp;autoReconnect=true&amp;noAccessToProcedureBodies=true&amp;zeroDateTimeBehavior=convertToNull"/>

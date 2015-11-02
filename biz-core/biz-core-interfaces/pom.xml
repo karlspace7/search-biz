@@ -15,6 +15,14 @@
 
     <dependencies>
 
+        <!-- biz start -->
+        <dependency>
+            <groupId>com.yao.search</groupId>
+            <artifactId>biz-core-api</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <!-- biz end -->
+
     </dependencies>
 
 </project>

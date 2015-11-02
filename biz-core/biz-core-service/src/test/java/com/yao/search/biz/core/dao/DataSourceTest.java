@@ -1,6 +1,6 @@
 package com.yao.search.biz.core.dao;
 
-import org.apache.commons.dbcp.BasicDataSource;
+import com.alibaba.druid.pool.DruidDataSource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -20,7 +20,7 @@ import java.util.List;
 public class DataSourceTest {
 
     @Autowired
-    BasicDataSource searchDataSource;
+    DruidDataSource searchDataSource;
 
     @Test
     public void testConnection() throws Exception{
